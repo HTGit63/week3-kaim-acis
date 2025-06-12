@@ -1,0 +1,8 @@
+data/
+.dvc/
+.dvc_storage/
+*.csv
+*.dvc
+__pycache__/
+.ipynb_checkpoints/
+.env
