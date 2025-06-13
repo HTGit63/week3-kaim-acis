@@ -6,3 +6,6 @@ data/
 __pycache__/
 .ipynb_checkpoints/
 .env
+
+!.dvc
+!data/raw/MachineLearningRating_v3.txt.dvc
