@@ -40,7 +40,8 @@ stages:
       - results/models/clf_model.pkl
       - data/processed/features.parquet
     outs:
-      - results/interpretability
+      - results/
+      
   eda_plots:
     cmd: jupyter nbconvert --execute --to notebook --inplace notebooks/01_EDA.ipynb
     deps:
