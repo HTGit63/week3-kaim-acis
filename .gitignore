@@ -7,6 +7,7 @@
 .dvc/cache/
 .dvc/tmp/
 .dvc_storage/
+dvc_storage/
 
 # DVC-tracked data (ignore actual files, but allow .dvc metafiles)
 # Raw data
