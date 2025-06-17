@@ -1,35 +1,41 @@
-# Existing ignores...
+# Virtual Environment
 .venv/
-# Data raw files are DVC-tracked; ignore actual file but allow its .dvc metafile
+
+# DVC
+# DVC storage/cache
+.dvc/
+.dvc/cache/
+.dvc/tmp/
+.dvc_storage/
+
+# DVC-tracked data (ignore actual files, but allow .dvc metafiles)
+# Raw data
 data/raw/*.txt
 !data/raw/*.dvc
 
-# Data processed and intermediate files (DVC-tracked outputs)
+# Processed and intermediate data
 data/processed/
 !data/processed/*.dvc
 data/intermediate/
 !data/intermediate/*.dvc
 
-# Results (DVC-tracked)
+# DVC-tracked results
 results/
 !results/**/*.dvc
 
-# DVC storage/cache
-.dvc/cache/
-.dvc/tmp/
-.dvc_storage/
+# Python
+# Byte-compiled files
+__pycache__/
+*.pyc
+*.pyd
+*.pyo
 
-# Jupyter checkpoints
+# Jupyter Notebooks
 **/.ipynb_checkpoints/
 
 # Logs
 *.log
 
-# Byte-compiled
-
-.dvc/
-.dvc_storage/
-data/
-results/
+# Specific file types to ignore
 *.parquet
 *.pkl
