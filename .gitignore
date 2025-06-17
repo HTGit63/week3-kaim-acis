@@ -1,42 +1,41 @@
-data/
-.dvc/
-.dvc_storage/
-*.csv
-*.dvc
-__pycache__/
-.ipynb_checkpoints/
-.env
-
-!.dvc
-!data/raw/MachineLearningRating_v3.txt.dvc
-
-# Existing ignores...
+# Virtual Environment
 .venv/
-# Data raw files are DVC-tracked; ignore actual file but allow its .dvc metafile
+
+# DVC
+# DVC storage/cache
+.dvc/
+.dvc/cache/
+.dvc/tmp/
+.dvc_storage/
+
+# DVC-tracked data (ignore actual files, but allow .dvc metafiles)
+# Raw data
 data/raw/*.txt
 !data/raw/*.dvc
 
-# Data processed and intermediate files (DVC-tracked outputs)
+# Processed and intermediate data
 data/processed/
 !data/processed/*.dvc
 data/intermediate/
 !data/intermediate/*.dvc
 
-# Results (DVC-tracked)
+# DVC-tracked results
 results/
 !results/**/*.dvc
 
-# DVC storage/cache
-.dvc/cache/
-.dvc/tmp/
-.dvc_storage/
+# Python
+# Byte-compiled files
+__pycache__/
+*.pyc
+*.pyd
+*.pyo
 
-# Jupyter checkpoints
+# Jupyter Notebooks
 **/.ipynb_checkpoints/
 
 # Logs
 *.log
 
-# Byte-compiled
-__pycache__/
-*.py[cod]
+# Specific file types to ignore
+*.parquet
+*.pkl
