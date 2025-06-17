@@ -1,4 +1,0 @@
-[core]
-    remote = localremote
-['remote "localremote"']
-    url = /home/hunde-tefera/dvc_remotes/week3-kaim-acis
