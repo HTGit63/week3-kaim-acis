@@ -26,5 +26,10 @@ results/
 *.log
 
 # Byte-compiled
-__pycache__/
-*.py[cod]
+
+.dvc/
+.dvc_storage/
+data/
+results/
+*.parquet
+*.pkl
