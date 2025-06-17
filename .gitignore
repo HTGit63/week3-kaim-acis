@@ -9,3 +9,34 @@ __pycache__/
 
 !.dvc
 !data/raw/MachineLearningRating_v3.txt.dvc
+
+# Existing ignores...
+.venv/
+# Data raw files are DVC-tracked; ignore actual file but allow its .dvc metafile
+data/raw/*.txt
+!data/raw/*.dvc
+
+# Data processed and intermediate files (DVC-tracked outputs)
+data/processed/
+!data/processed/*.dvc
+data/intermediate/
+!data/intermediate/*.dvc
+
+# Results (DVC-tracked)
+results/
+!results/**/*.dvc
+
+# DVC storage/cache
+.dvc/cache/
+.dvc/tmp/
+.dvc_storage/
+
+# Jupyter checkpoints
+**/.ipynb_checkpoints/
+
+# Logs
+*.log
+
+# Byte-compiled
+__pycache__/
+*.py[cod]
