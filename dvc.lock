@@ -1,0 +1,104 @@
+schema: '2.0'
+stages:
+  clean:
+    cmd: python scripts/clean_data.py --input 
+      data/raw/MachineLearningRating_v3.txt --output 
+      data/processed/df_clean.parquet
+    deps:
+    - path: data/raw/MachineLearningRating_v3.txt
+      hash: md5
+      md5: f6b7009b68ae21372b7deca9307fbb23
+      size: 529363713
+    - path: scripts/clean_data.py
+      hash: md5
+      md5: c3b9bff64f367cacbe1f4b2912ed0dd8
+      size: 3877
+    outs:
+    - path: data/processed/df_clean.parquet
+      hash: md5
+      md5: 72e071ba90f0b01bec32d2d056d99391
+      size: 14704305
+  stat_tests:
+    cmd: python scripts/stat_tests.py --input data/processed/df_clean.parquet 
+      --output_dir results/stat_tests --alpha 0.05
+    deps:
+    - path: data/processed/df_clean.parquet
+      hash: md5
+      md5: 72e071ba90f0b01bec32d2d056d99391
+      size: 14704305
+    - path: params.yaml
+      hash: md5
+      md5: 3ac357848f0c014a0818d96a293ff0e1
+      size: 286
+    - path: scripts/stat_tests.py
+      hash: md5
+      md5: 2e73a11581e788eea933be2d95c98433
+      size: 5401
+    outs:
+    - path: results/stat_tests
+      hash: md5
+      md5: 0103d8f75d02fde92fcb8abee877746e.dir
+      size: 1549
+      nfiles: 2
+  feature_eng:
+    cmd: python scripts/feature_engineering.py --input 
+      data/processed/df_clean.parquet --output data/processed/features.parquet
+    deps:
+    - path: data/processed/df_clean.parquet
+      hash: md5
+      md5: 72e071ba90f0b01bec32d2d056d99391
+      size: 14704305
+    - path: scripts/feature_engineering.py
+      hash: md5
+      md5: a8275896d0c40a720a33b275fbf3f733
+      size: 3768
+    outs:
+    - path: data/processed/features.parquet
+      hash: md5
+      md5: f7d422736d3b46fd29ac21f2541d8abe
+      size: 1946218
+  train:
+    cmd: python scripts/train_model.py --input data/processed/features.parquet 
+      --output_dir results/models --params params.yaml
+    deps:
+    - path: data/processed/features.parquet
+      hash: md5
+      md5: f7d422736d3b46fd29ac21f2541d8abe
+      size: 1946218
+    - path: params.yaml
+      hash: md5
+      md5: 3ac357848f0c014a0818d96a293ff0e1
+      size: 286
+    - path: scripts/train_model.py
+      hash: md5
+      md5: 4e034d6adabf950a239a605579893eb4
+      size: 5294
+    outs:
+    - path: results/models
+      hash: md5
+      md5: 59dd389261883eb0efca3cebd3952457.dir
+      size: 17278586
+      nfiles: 5
+  interpret:
+    cmd: python scripts/interpretability.py --model_path 
+      results/models/clf_model.pkl --input data/processed/features.parquet 
+      --output_dir results/interpretability
+    deps:
+    - path: data/processed/features.parquet
+      hash: md5
+      md5: f7d422736d3b46fd29ac21f2541d8abe
+      size: 1946218
+    - path: results/models/clf_model.pkl
+      hash: md5
+      md5: c4af2f194aa140bc7ef1975c1b3ecb48
+      size: 2594761
+    - path: scripts/interpretability.py
+      hash: md5
+      md5: 20cda603e86a38118011face4e8aa01d
+      size: 7913
+    outs:
+    - path: results/interpretability
+      hash: md5
+      md5: d751713988987e9331980363e24189ce.dir
+      size: 0
+      nfiles: 0

@@ -1,0 +1,43 @@
+stages:
+  clean:
+    cmd: python scripts/clean_data.py --input data/raw/MachineLearningRating_v3.txt --output data/processed/df_clean.parquet
+    deps:
+      - scripts/clean_data.py
+      - data/raw/MachineLearningRating_v3.txt
+    outs:
+      - data/processed/df_clean.parquet
+
+  stat_tests:
+    cmd: python scripts/stat_tests.py --input data/processed/df_clean.parquet --output_dir results/stat_tests --alpha ${stat_tests.alpha}
+    deps:
+      - scripts/stat_tests.py
+      - data/processed/df_clean.parquet
+      - params.yaml
+    outs:
+      - results/stat_tests
+
+  feature_eng:
+    cmd: python scripts/feature_engineering.py --input data/processed/df_clean.parquet --output data/processed/features.parquet
+    deps:
+      - scripts/feature_engineering.py
+      - data/processed/df_clean.parquet
+    outs:
+      - data/processed/features.parquet
+
+  train:
+    cmd: python scripts/train_model.py --input data/processed/features.parquet --output_dir results/models --params params.yaml
+    deps:
+      - scripts/train_model.py
+      - data/processed/features.parquet
+      - params.yaml
+    outs:
+      - results/models
+
+  interpret:
+    cmd: python scripts/interpretability.py --model_path results/models/clf_model.pkl --input data/processed/features.parquet --output_dir results/interpretability
+    deps:
+      - scripts/interpretability.py
+      - results/models/clf_model.pkl
+      - data/processed/features.parquet
+    outs:
+      - results/interpretability

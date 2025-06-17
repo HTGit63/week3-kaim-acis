@@ -1,15 +1,3 @@
-data/
-.dvc/
-.dvc_storage/
-*.csv
-*.dvc
-__pycache__/
-.ipynb_checkpoints/
-.env
-
-!.dvc
-!data/raw/MachineLearningRating_v3.txt.dvc
-
 # Existing ignores...
 .venv/
 # Data raw files are DVC-tracked; ignore actual file but allow its .dvc metafile
