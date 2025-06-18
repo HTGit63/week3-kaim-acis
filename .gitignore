@@ -1,8 +1,62 @@
-data/
-.dvc/
-.dvc_storage/
-*.csv
-*.dvc
+# ---------------------
+# Virtual Environment
+# ---------------------
+.venv/
+
+# ---------------------
+# Python cache & compiled
+# ---------------------
 __pycache__/
-.ipynb_checkpoints/
+*.py[cod]
+*.pyo
+*.pyd
+
+
+# ---------------------
+# Environment and logs
+# ---------------------
 .env
+*.log
+
+# ---------------------
+# DVC folders and cache
+# ---------------------
+.dvc/
+.dvc/cache/
+.dvc/tmp/
+.dvc_storage/
+
+# ---------------------
+# DVC metadata files (keep these tracked!)
+# ---------------------
+!*.dvc
+!dvc.yaml
+!dvc.lock
+
+# ---------------------
+# Raw data (ignore content, keep .dvc)
+# ---------------------
+data/raw/*
+!data/raw/*.dvc
+
+# ---------------------
+# Processed and intermediate data
+# ---------------------
+data/processed/*
+!data/processed/*.dvc
+
+data/intermediate/*
+!data/intermediate/*.dvc
+
+# ---------------------
+# DVC-tracked results
+# ---------------------
+results/*
+!results/**/*.dvc
+
+# ---------------------
+# General large data files (if untracked)
+# ---------------------
+*.csv
+*.parquet
+*.pkl

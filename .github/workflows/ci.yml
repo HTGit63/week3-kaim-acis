@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: |
+          python -m venv .venv
+          source .venv/bin/activate
+          pip install --upgrade pip
+          pip install flake8 dvc[pull] pandas scikit-learn pyarrow
+      - name: Lint scripts
+        run: |
+          source .venv/bin/activate
+          flake8 scripts
+      - name: DVC pull raw data
+        run: |
+          source .venv/bin/activate
+          dvc pull
+      - name: Run clean_data stage
+        run: |
+          source .venv/bin/activate
+          python scripts/clean_data.py --input data/raw/MachineLearningRating_v3.txt --output data/processed/df_clean_test.parquet
+      # Optionally run a small subset of stat tests on df_clean_test.parquet if feasible
