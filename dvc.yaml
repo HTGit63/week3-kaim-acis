@@ -42,10 +42,3 @@ stages:
     outs:
       - results/interpretability
 
-  eda_plots:
-    cmd: jupyter nbconvert --execute --to notebook --inplace notebooks/01_EDA.ipynb
-    deps:
-      - notebooks/01_EDA.ipynb
-      - data/processed/df_clean.parquet
-    outs:
-      - results/eda
