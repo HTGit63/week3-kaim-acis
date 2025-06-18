@@ -8,7 +8,7 @@ stages:
       - data/processed/df_clean.parquet
 
   stat_tests:
-    cmd: python scripts/stat_tests.py --input data/processed/df_clean.parquet --output_dir results/stat_tests --alpha ${stat_tests.alpha}
+    cmd: python scripts/stat_tests.py --input data/processed/df_clean.parquet --output_dir results/stat_tests --alpha 0.05
     deps:
       - scripts/stat_tests.py
       - data/processed/df_clean.parquet
@@ -24,7 +24,7 @@ stages:
     outs:
       - data/processed/features.parquet
 
-  train:
+  train_model:
     cmd: python scripts/train_model.py --input data/processed/features.parquet --output_dir results/models --params params.yaml
     deps:
       - scripts/train_model.py

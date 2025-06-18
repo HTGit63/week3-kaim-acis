@@ -102,3 +102,25 @@ stages:
       md5: d751713988987e9331980363e24189ce.dir
       size: 0
       nfiles: 0
+  train_model:
+    cmd: python scripts/train_model.py --input data/processed/features.parquet 
+      --output_dir results/models --params params.yaml
+    deps:
+    - path: data/processed/features.parquet
+      hash: md5
+      md5: f7d422736d3b46fd29ac21f2541d8abe
+      size: 1946218
+    - path: params.yaml
+      hash: md5
+      md5: 845db89f5f3854d8bda814486a9be151
+      size: 176
+    - path: scripts/train_model.py
+      hash: md5
+      md5: 4e034d6adabf950a239a605579893eb4
+      size: 5294
+    outs:
+    - path: results/models
+      hash: md5
+      md5: 937844617f80db97fa19d73c92ffaf7b.dir
+      size: 50465133
+      nfiles: 5
