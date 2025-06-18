@@ -1,15 +1,10 @@
-# params.yaml
-
-# Statistical testing parameters
-stat_tests:
-  alpha: 0.05
-  # Optionally specify group sets, e.g.,
-  # provinces: ["Gauteng", "Western Cape"]
-  # zips: ["1459", "2000"]
-
-model:
-  random_forest:
-    n_estimators: 100
-    max_depth: 10
-  test_size: 0.2
-  random_state: 42
+train_test_split:
+test_size: 0.3
+random_state: 42
+classification:
+n_estimators: 100
+max_depth: null
+class_weight: balanced
+regression:
+n_estimators: 100
+max_depth: null
