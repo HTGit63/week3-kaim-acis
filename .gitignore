@@ -1,42 +1,62 @@
+# ---------------------
 # Virtual Environment
+# ---------------------
 .venv/
 
-# DVC
-# DVC storage/cache
+# ---------------------
+# Python cache & compiled
+# ---------------------
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+
+# ---------------------
+# Environment and logs
+# ---------------------
+.env
+*.log
+
+# ---------------------
+# DVC folders and cache
+# ---------------------
 .dvc/
 .dvc/cache/
 .dvc/tmp/
 .dvc_storage/
-dvc_storage/
-.dvc/config/
-# DVC-tracked data (ignore actual files, but allow .dvc metafiles)
-# Raw data
-data/raw/*.txt
+
+# ---------------------
+# DVC metadata files (keep these tracked!)
+# ---------------------
+!*.dvc
+!dvc.yaml
+!dvc.lock
+
+# ---------------------
+# Raw data (ignore content, keep .dvc)
+# ---------------------
+data/raw/*
 !data/raw/*.dvc
 
+# ---------------------
 # Processed and intermediate data
-data/processed/
+# ---------------------
+data/processed/*
 !data/processed/*.dvc
-data/intermediate/
+
+data/intermediate/*
 !data/intermediate/*.dvc
 
+# ---------------------
 # DVC-tracked results
-results/
+# ---------------------
+results/*
 !results/**/*.dvc
 
-# Python
-# Byte-compiled files
-__pycache__/
-*.pyc
-*.pyd
-*.pyo
-
-# Jupyter Notebooks
-**/.ipynb_checkpoints/
-
-# Logs
-*.log
-
-# Specific file types to ignore
+# ---------------------
+# General large data files (if untracked)
+# ---------------------
+*.csv
 *.parquet
 *.pkl

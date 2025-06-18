@@ -1,0 +1,4 @@
+[core]
+    remote = localremote
+['remote "localremote"']
+    url = /media/hunde-tefera/.../localremote/.dvc_storage/md5
